@@ -16,7 +16,7 @@ Libraries Used
 - [Jcrop](https://github.com/tapmodo/Jcrop) to crop the images
 - [File Uploader](http://github.com/valums/file-uploader) to upload images
 
-Useage
+Usage
 ------
 Please see examples provided.  These are minimal examples.  All scripts included are needed.
 
