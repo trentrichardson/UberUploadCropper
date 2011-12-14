@@ -18,11 +18,9 @@ Libraries Used
 
 Usage
 ------
-Please see examples provided.  These are minimal examples.  All scripts included are needed.
-
-Disclaimer
-----------
 ** THIS example is not for production use.  It is only an example implementation! **
+
+Please see examples provided.  These are minimal examples.  All scripts included are needed.
 
 To use the examples you MUST give the upload directories write permissions.
 
@@ -31,4 +29,3 @@ example of how to get the script croordinating with fileuploader, Impromptu, and
 
 When you begin your own implementation you will need to do some image prep work in 
 upload.php, as well as crop.php (or whereever you decide to place it.)
-
