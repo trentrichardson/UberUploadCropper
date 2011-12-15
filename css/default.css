@@ -1,8 +1,21 @@
+/*
+------------------------------
+	layout
+------------------------------
+*/
+body,img,p,h1,h2,fieldset,form,pre,code{ margin:0; padding:0; border:0; }
 body {
 	font: 12px/16px Arial, Helvetica, sans-serif;
+	border-top: solid 5px #A04334;
+	background-color: #FAF9F4;
+	text-align: center;
 }
 noscript{ color: #ff0000; font-weight: bold; }
-#PhotoPrev{ width: 100px; }
+h1{ font-family: Times, serif; color: #555; margin: 0 0 10px 0; letter-spacing: 2px; }
+p{ line-height: 18px; margin: 10px 0; }
+#wrapper{ text-align: left; margin: 40px auto; background-color: #ffffff; width: 500px; min-height: 200px; padding: 25px; }
+#PhotoPrevs{ margin: 10px 0; }
+#PhotoPrevs img{ margin: 20px 20px; }
 
 /*
 ------------------------------
@@ -15,7 +28,7 @@ div.jqi .jqicontainer{ font-weight: bold; }
 div.jqi .jqiclose{ position: absolute; top: 4px; right: -2px; width: 18px; cursor: default; color: #bbbbbb; font-weight: bold; }
 div.jqi .jqimessage{ padding: 10px; line-height: 20px; color: #444444; }
 div.jqi .jqibuttons{ text-align: right; padding: 5px 0 5px 0; border: solid 1px #eeeeee; background-color: #f4f4f4; }
-div.jqi button{ padding: 3px 10px; margin: 0 10px; background-color: #2F6073; border: solid 1px #f4f4f4; color: #ffffff; font-weight: bold; font-size: 12px; }
-div.jqi button:hover{ background-color: #728A8C; }
-div.jqi button.jqidefaultbutton{ background-color: #BF5E26; }
+div.jqi button{ padding: 3px 10px; margin: 0 10px; background-color: #7B94B2; border: solid 1px #f4f4f4; color: #ffffff; font-weight: bold; font-size: 12px; }
+div.jqi button:hover{ background-color: #5B7492; }
+div.jqi button.jqidefaultbutton{ background-color: #A04334; }
 .jqiwarning .jqi .jqibuttons{ background-color: #BF5E26; }

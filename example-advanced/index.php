@@ -55,7 +55,8 @@
 	</head>
 
 	<body>
-			<h1>Uberuploadcropper</h1>
+		<div id="wrapper">
+			<h1>UberUploadCropper</h1>
 			<p>Advanced Example which demonstrates the uploading a large image, scaling a smaller copy to fit the browser, crop, and resize the original full size image.  This method maintains better image quality.</p>
 			
 			<div id="UploadImages">
@@ -65,5 +66,6 @@
 			<div id="PhotoPrevs">
 				<!-- The cropped images will be populated here -->
 			</div>
+		</div>
 	</body>
 </html>

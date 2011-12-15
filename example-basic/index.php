@@ -55,7 +55,8 @@
 	</head>
 
 	<body>
-			<h1>Uberuploadcropper</h1>
+		<div id="wrapper">
+			<h1>UberUploadCropper</h1>
 			<p>Basic Example which demonstrates the very basic upload and crop.</p>
 			<div id="UploadImages">
 				<noscript>Please enable javascript to upload and crop images.</noscript>
@@ -64,5 +65,6 @@
 			<div id="PhotoPrevs">
 				<!-- The cropped images will be populated here -->
 			</div>
+		</div>
 	</body>
 </html>
