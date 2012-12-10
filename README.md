@@ -25,12 +25,17 @@ Usage
 ------
 ** THIS example is not for production use.  It is only an example implementation! **
 
-Please see examples provided.  These are minimal examples.  All scripts included are needed.
-
-To use the examples you MUST give the upload directories write permissions.
+Please see examples provided.  These are minimal examples with comments.  Have a look at the comments.
 
 There is a bit of resizing and crop work to be done on your part, this is just an 
-example of how to get the script croordinating with fineuploader, Impromptu, and jcrop.
+example of how to get the script coordinating with fineuploader, Impromptu, and jcrop.
 
 When you begin your own implementation you will need to do some image prep work in 
-upload.php, as well as crop.php (or whereever you decide to place it.)
+upload.php, as well as crop.php (or where ever you decide to place it.)
+
+
+Common Issues
+-------------
+- To use the examples you MUST give the upload directories write permissions.
+- Your max post size or max upload size is too small (for php see your php.ini)
+- Use Firebug or Developer console to view network requests to see if there were errors

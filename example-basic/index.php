@@ -38,17 +38,17 @@
 					//---------------------------------------------------
 					jcrop: {
 						aspectRatio : 1, 
-						allowSelect : false,			//can reselect
-						allowResize : false,			//can resize selection
-						//minSize     : [ 100, 100 ],		//if you want to be able to resize, use these
+						allowSelect : false, //can reselect
+						allowResize : false, //can resize selection
+						//minSize     : [ 100, 100 ], //if you want to be able to resize, use these
 						//maxSize     : [ 100, 100 ],
-						setSelect   : [ 0, 0, 200, 200 ]	//these are the dimensions of the crop box x1,y1,x2,y2
+						setSelect   : [ 0, 0, 200, 200 ] //these are the dimensions of the crop box x1,y1,x2,y2
 					},
 					//---------------------------------------------------
 					//now the uber options..
 					//---------------------------------------------------
-					folder          : 'uploads/',			// only used in uber, not passed to server
-					cropAction      : 'crop.php',		// server side request to crop image
+					folder          : 'uploads/', // only used in uber, not passed to server
+					cropAction      : 'crop.php', // server side request to crop image
 					onComplete      : function(e,imgs,data){ 
 						var $PhotoPrevs = $('#PhotoPrevs');
 
