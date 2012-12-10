@@ -21,7 +21,7 @@ otherwise the fallback is standard $_FILE[].
 I have altered the fileuploader.php to pass back the filename 
 which was set and the original filename
 */
-require "../scripts".DS."fileuploader".DS."fileuploader.php";
+require "../scripts".DS."fineuploader".DS."fineuploader.php";
 
 $allowedExtensions = array('jpeg','jpg','gif','png');
 $sizeLimit = 2 * 1024 * 1024; // max file size in bytes
@@ -29,7 +29,7 @@ $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 
 $result = $uploader->handleUpload(UPLOAD_DIR, false, ''); //handleUpload($uploadDirectory, $replaceOldFile=FALSE, $filename='')
 // when filename is not provided the actual file name will be used.  Consider passing something like uuid: md5(uniqid())
-// $result = a string for error or an array(success=>'success', filename=>'myfile123.jpg', originalFilename=>'myfile.jpg)
+// $result = a string for error or an array(success=>'success', filename=>'myfile123.jpg', originalFilename=>'myfile.jpg')
 
 
 /* 

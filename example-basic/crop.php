@@ -13,14 +13,14 @@ define('DS', DIRECTORY_SEPARATOR);
 define('CURR_DIR', dirname(__FILE__) . DS);
 define('UPLOAD_DIR', CURR_DIR . "uploads". DS);
 
+//crop our image..	
+require "gd_image.php";
+$gd = new GdImage();
+
 foreach($_POST['imgcrop'] as $k => $v) {
 
 	$targetPath = UPLOAD_DIR;
 	$targetFile =  str_replace('//','/',$targetPath) . $v['filename'];
-	
-	//crop our image..	
-	require "gd_image.php";
-	$gd = new GdImage();
 
 	$gd->crop($targetFile, $v['x'], $v['y'], $v['w'], $v['h']);
 	

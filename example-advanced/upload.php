@@ -21,7 +21,7 @@ otherwise the fallback is standard $_FILE[].
 I have altered the fileuploader.php to pass back the filename 
 which was set and the original filename
 */
-require "../scripts".DS."fileuploader".DS."fileuploader.php";
+require "../scripts".DS."fineuploader".DS."fineuploader.php";
 
 $allowedExtensions = array('jpeg','jpg','gif','png');
 $sizeLimit = 2 * 1024 * 1024; // max file size in bytes

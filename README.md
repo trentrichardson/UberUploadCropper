@@ -1,11 +1,11 @@
-jQuery UberUploadCropper
+UberUploadCropper
 ========================
 
 By: Trent Richardson [http://trentrichardson.com]
 
-Version 0.2
+Version 0.3
 
-Last Modified: 12/12/2011
+Last Modified: 12/10/2012
 
 Copyright 2011 Trent Richardson
 
@@ -19,7 +19,7 @@ Libraries Used
 --------------
 - [jQuery Impromptu](http://trentrichardson.com/Impromptu/) for modal resizing window
 - [Jcrop](https://github.com/tapmodo/Jcrop) to crop the images
-- [File Uploader](http://github.com/valums/file-uploader) to upload images
+- [Fine Uploader](http://fineuploader.com/) to upload images
 
 Usage
 ------
@@ -30,7 +30,7 @@ Please see examples provided.  These are minimal examples.  All scripts included
 To use the examples you MUST give the upload directories write permissions.
 
 There is a bit of resizing and crop work to be done on your part, this is just an 
-example of how to get the script croordinating with fileuploader, Impromptu, and jcrop.
+example of how to get the script croordinating with fineuploader, Impromptu, and jcrop.
 
 When you begin your own implementation you will need to do some image prep work in 
 upload.php, as well as crop.php (or whereever you decide to place it.)

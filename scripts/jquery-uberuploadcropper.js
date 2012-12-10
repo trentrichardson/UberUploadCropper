@@ -1,8 +1,8 @@
 /*
- * jQuery UberUploadCropper-v2
+ * jQuery UberUploadCropper-v0.3
  * By: Trent Richardson [http://trentrichardson.com]
- * Version 0.2
- * Last Modified: 12/09/2011
+ * Version 0.3
+ * Last Modified: 12/10/2012
  * 
  * Copyright 2011 Trent Richardson
  * Dual licensed under the MIT and GPL licenses.
@@ -13,24 +13,28 @@
 (function($){
 
 	$.fn.uberuploadcropper = function(options){
-		options = $.extend({},{ multiple:false, auto: true, buttonText:'BROWSE', onComplete:function(){} },options);
+		options = $.extend(true, {}, { 
+				fineuploader: {  }, // fineuploader options
+				jcrop: { setSelect: [0,0,100,100] }, // jcrop options
+				impromptu: {}, // impromptu options 
+				folder: '',
+				cropAction: '',
+				onComplete:function(){}
+			},
+			options);
 		
-		var onComplete = options.onComplete;
+		var $t = $(this),		
+			imgdata = [];
 		
-		var imgdata = [];
-		
-		var cropPromptSubmit = function(v,m,f){
+		// When each state of the prompt is submitted
+		var cropPromptSubmit = function(e,v,m,f){
 		
 			if(v == 'Previous'){
-				$.prompt.getCurrentState().find('.ubercropimage').Jcrop('disable');
 				$.prompt.prevState();
-				$.prompt.getCurrentState().find('.ubercropimage').Jcrop('enable');
 				return false;
 			}
 			if(v == 'Next'){
-				$.prompt.getCurrentState().find('.ubercropimage').Jcrop('disable');
 				$.prompt.nextState();
-				$.prompt.getCurrentState().find('.ubercropimage').Jcrop('enable');
 				return false;
 			}
 			if(v == 'Cancel'){
@@ -43,27 +47,20 @@
 				
 				$.post(options.cropAction,f,function(data){
 					$.prompt.close();
-					/*
-					var str = "";
-					$.each(f,function(i,obj){
-						str += i +" : "+ obj +"\n";
-					});
-					alert(str);
-					*/
-					
-					//call user callback func..
-					onComplete(imgdata,data);					
+
+					// trigger a custom event
+					$t.bind('uberOnComplete', options.onComplete)
+						.trigger('uberOnComplete',[imgdata,data]);
 					
 					imgdata = [];
 				});
 				
 				return false;
 			}
-
 	
 		};
 		
-		var cropPromptCallback = function(v,m,f){
+		var cropPromptClose = function(e,v,m,f){
 			imgdata = [];
 		};
 		
@@ -75,17 +72,6 @@
 			$currstate.find('.imgcrop_y').val(c.y);
 			$currstate.find('.imgcrop_w').val(c.w);
 			$currstate.find('.imgcrop_h').val(c.h);
-		}
-		
-		// add the uploaded image to our queue
-		var singleUploadComplete = function(id, fileName, responseJson){
-		
-			imgdata.push(responseJson);
-			
-			if (uploader.getInProgress() == 0) {
-				// all have completed..
-				allUploadsComplete();
-			} 
 		};
 		
 		// upload is done.. crop these puppies!
@@ -99,8 +85,8 @@
 					'<input type="hidden" name="imgcrop['+ i +'][originalFilename]" id="imgcrop_'+ i +'_originalFilename" value="'+obj.originalFilename+'" class="imgcrop_originalFilename" />'+
 					'<input type="hidden" name="imgcrop['+ i +'][x]" id="imgcrop_'+ i +'_x" value="0" class="imgcrop_x" />'+
 					'<input type="hidden" name="imgcrop['+ i +'][y]" id="imgcrop_'+ i +'_y" value="0" class="imgcrop_y" />'+
-					'<input type="hidden" name="imgcrop['+ i +'][w]" id="imgcrop_'+ i +'_w" value="'+ options.width +'" class="imgcrop_w" />'+
-					'<input type="hidden" name="imgcrop['+ i +'][h]" id="imgcrop_'+ i +'_h" value="'+ options.height +'" class="imgcrop_h" />'+
+					'<input type="hidden" name="imgcrop['+ i +'][w]" id="imgcrop_'+ i +'_w" value="'+ (options.jcrop.setSelect[2]-options.jcrop.setSelect[0]) +'" class="imgcrop_w" />'+
+					'<input type="hidden" name="imgcrop['+ i +'][h]" id="imgcrop_'+ i +'_h" value="'+ (options.jcrop.setSelect[3]-options.jcrop.setSelect[1]) +'" class="imgcrop_h" />'+
 					'<input type="hidden" name="imgcrop['+ i +'][folder]" id="imgcrop_'+ i +'_folder" value="'+ options.folder +'" class="imgcrop_folder" />';
 				
 				if(imgdata.length == 1)
@@ -113,39 +99,51 @@
 				
 				
 				states['state'+ i] = {
+					title: obj.originalFilename,
 					html: str,
 					buttons: btn,
 					submit: cropPromptSubmit
 				};
 				
-			});
-			
+			});			
 			states['waitState'] = { html: 'Processing...', buttons:{} };
 			
-			var imp = $.prompt(states,{ callback: cropPromptCallback });
+			var biggestwidth = 0,
+				imp = $.prompt(states,options.impromptu)
+						.bind('promptclose', cropPromptClose);
 			
-			var biggestwidth = 0;
-			
-			//we obviously need to destroy and create each time we enter and leave a state..
-			//$('.ubercropimage').imgAreaSelect({ keys: { arrows: 15, ctrl: 5, shift: 'resize' } });
 			$('.ubercropimage').each(function(i){ 
-				$(this).Jcrop(options);
-				if(i > 0)
-					$(this).Jcrop('disable');
-					
+				var $img = $(this);
+				$img.Jcrop(options.jcrop);
+
 				// we might get a huge image, so resize the prompt..
-				$(this).load(function(){
-					if($(this).width() > biggestwidth){
-						biggestwidth = $(this).width() + 40;
+				$img.load(function(){
+					if($img.width() > biggestwidth){
+						biggestwidth = $img.width() + 40;
 						imp.find('.jqi').width(biggestwidth+40).css('marginLeft',((imp.find('.jqi').outerWidth()/2)*-1));
 					}
 				});
 			});
-			//imgdata = [];
 		};
 		
-		options = $.extend(options,{ element: $(this)[0], 'onComplete': singleUploadComplete, 'onChange': jcropOnChange, 'onSelect': jcropOnChange });
-		var uploader = new qq.FileUploader(options);
+		options = $.extend(true, options,{ jcrop:{onChange: jcropOnChange, onSelect: jcropOnChange} });
+		
+		$t.fineUploader(options.fineuploader)
+			//.on('error', function(event, id, filename, reason){
+			//		console.log('Error: ', filename, reason);
+			//	})
+			.on('complete', function(event, id, fileName, responseJson){
+					imgdata.push(responseJson);
+					
+					$t.trigger('uberSingleUploadComplete',[responseJson]);
+
+					if ($t.fineUploader('getInProgress') == 0) {
+						
+						// trigger a custom event
+						$t.bind('uberAllUploadsComplete',allUploadsComplete)
+							.trigger('uberAllUploadsComplete',[imgdata]);
+					} 
+				});
 		
 	}
 
