@@ -26,10 +26,6 @@
 		var $t = $(this),
 			imgdata = [];
 
-		//set custom bindings
-		$t.bind('uberOnComplete', options.onComplete);
-		$t.bind('uberAllUploadsComplete',allUploadsComplete);
-
 		// When each state of the prompt is submitted
 		var cropPromptSubmit = function(e,v,m,f){
 
@@ -130,6 +126,10 @@
 		};
 
 		options = $.extend(true, options,{ jcrop:{onChange: jcropOnChange, onSelect: jcropOnChange} });
+
+		//set custom bindings
+		$t.bind('uberOnComplete', options.onComplete);
+		$t.bind('uberAllUploadsComplete',allUploadsComplete);
 
 		$t.fineUploader(options.fineuploader)
 			//.on('error', function(event, id, filename, reason){
