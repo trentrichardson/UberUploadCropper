@@ -3,9 +3,9 @@ UberUploadCropper
 
 By: Trent Richardson [http://trentrichardson.com]
 
-Version 0.3
+Version 0.4
 
-Last Modified: 12/10/2012
+Last Modified: 03/26/2013
 
 Copyright 2011 Trent Richardson
 

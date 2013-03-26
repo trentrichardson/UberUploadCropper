@@ -1,10 +1,10 @@
 /*
- * jQuery UberUploadCropper-v0.3
+ * jQuery UberUploadCropper
  * By: Trent Richardson [http://trentrichardson.com]
- * Version 0.3
- * Last Modified: 12/10/2012
+ * Version 0.4
+ * Last Modified: 03/26/2013
  *
- * Copyright 2011 Trent Richardson
+ * Copyright 2013 Trent Richardson
  * Dual licensed under the MIT and GPL licenses.
  * http://trentrichardson.com/Impromptu/GPL-LICENSE.txt
  * http://trentrichardson.com/Impromptu/MIT-LICENSE.txt
